@@ -21,10 +21,10 @@ exports.loadCommands = function(client, commands) {
                 if(command.enabled){
                     commands.set(command.name, command)
                 } else {
-                    console.info(`[INFO] Command ${command} wasn't enabled`)
+                    console.info(`[INFO] Command ${command.name} wasn't enabled`)
                 }
             } else {
-                console.error(`[ERR] Command \`${command}\` Doesn't have the proper structure, see https://github.com/Omi036/smartworld_administration#events for more details`)
+                console.error(`[ERR] Command \`${module}\` Doesn't have the proper structure, see https://github.com/Omi036/smartworld_administration#events for more details`)
             }
         }
     })

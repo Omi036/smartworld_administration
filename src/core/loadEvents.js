@@ -18,10 +18,10 @@ exports.loadEvents = function(client, events) {
                 events.set(event.name, event)
                 event.execute(client)
             } else {
-                console.info(`[INFO] Event ${event} wasn't enabled`)
+                console.info(`[INFO] Event ${event.name} wasn't enabled`)
             }
         } else {
-            console.error(`[ERR] Event \`${event}\` Doesn't have the proper structure, see https://github.com/Omi036/smartworld_administration#events for more details`)
+            console.error(`[ERR] Event \`${file}\` Doesn't have the proper structure, see https://github.com/Omi036/smartworld_administration#events for more details`)
         }
     }
 

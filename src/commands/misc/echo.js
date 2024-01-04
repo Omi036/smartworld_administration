@@ -1,9 +1,9 @@
-import { SlashCommandBuilder } from 'discord.js'
+const { SlashCommandBuilder } = require('discord.js')
 
 module.exports = {
     name:"echo",
     description: "Devuelve lo que dices",
-    type: "commands",
+    type: "command",
     enabled: true,
     data: new SlashCommandBuilder()
         .setName("echo")

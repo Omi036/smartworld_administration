@@ -34,7 +34,7 @@ module.exports = {
 Command files must be placed under `src/commands/CATEGORY`, ending in `.js
 The module must have the following structure:
 ```js
-import { SlashCommandBuilder } from 'discord.js'
+const { SlashCommandBuilder } = require('discord.js')
 
 module.exports = {
     name:"ping", // Command name (must match the name inside data)
