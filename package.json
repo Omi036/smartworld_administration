@@ -1,0 +1,64 @@
+{
+  "name": "smartworld_bot",
+  "version": "1.0.0",
+  "description": "Discord Administration Bot for SmartWorld Server",
+  "main": "src/index.js",
+  "dependencies": {
+    "acorn": "^8.10.0",
+    "acorn-walk": "^8.2.0",
+    "arg": "^4.1.3",
+    "busboy": "^1.6.0",
+    "create-require": "^1.1.1",
+    "diff": "^4.0.2",
+    "discord-api-types": "^0.37.50",
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.3.1",
+    "fast-deep-equal": "^3.1.3",
+    "file-type": "^18.5.0",
+    "ieee754": "^1.2.1",
+    "inherits": "^2.0.4",
+    "lodash": "^4.17.21",
+    "lodash.snakecase": "^4.1.1",
+    "make-error": "^1.3.6",
+    "peek-readable": "^5.0.0",
+    "readable-stream": "^3.6.2",
+    "readable-web-to-node-stream": "^3.0.2",
+    "safe-buffer": "^5.2.1",
+    "streamsearch": "^1.1.0",
+    "string_decoder": "^1.3.0",
+    "strtok3": "^7.0.0",
+    "token-types": "^5.0.1",
+    "ts-mixer": "^6.0.3",
+    "ts-node": "^10.9.1",
+    "tslib": "^2.6.0",
+    "typescript": "^5.1.6",
+    "undici": "^5.22.1",
+    "util-deprecate": "^1.0.2",
+    "v8-compile-cache-lib": "^3.0.1",
+    "ws": "^8.13.0",
+    "yn": "^3.1.1"
+  },
+  "scripts": {
+    "prestart": "node src/registerer.js",
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Omi036/smartworld_administration.git"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "discordjs",
+    "discord.js",
+    "node",
+    "node.js",
+    "javascript"
+  ],
+  "author": "Omi036",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Omi036/smartworld_administration/issues"
+  },
+  "homepage": "https://github.com/Omi036/smartworld_administration#readme"
+}
