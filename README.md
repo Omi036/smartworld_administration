@@ -9,8 +9,8 @@ CLIENT_ID=
 
 DB_USER=
 DB_PASSWORD=
-DB_IP=192.168.18.172
-DB_PORT=28017
+DB_IP=
+DB_PORT=
 ```
 # Files
 ## Events
@@ -27,4 +27,5 @@ module.exports = {
             console.log("Client is ready")
         })
     }
-}```
+}
+```
