@@ -1,14 +1,14 @@
 const { SlashCommandBuilder } = require('discord.js')
 
 module.exports = {
-    name:"echo",
-    description: "Devuelve lo que dices",
+    name:"ping",
+    description: "Devuelve el tiempo de latencia",
     type: "command",
     enabled: true,
     data: new SlashCommandBuilder()
-        .setName("echo")
-        .setDescription("Devuelve lo que dices"),
-    execute: function(client) {
-        console.log("Done")
+        .setName("ping")
+        .setDescription("Devuelve el tiempo de latencia"),
+    execute: function(interaction, client, commands) {
+        interaction.reply(`🏓 Pong! ${interaction.createdTimestamp - Date.now()}ms`)
     }
 }

@@ -11,7 +11,7 @@ const events = new Collection()
 const commands = new Collection()
 
 loadCommands(client, commands)
-loadEvents(client, events)
+loadEvents(client, events, commands)
 
 
 client.login(token)
