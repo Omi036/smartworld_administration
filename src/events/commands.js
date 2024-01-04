@@ -3,7 +3,7 @@ module.exports = {
     description:"On new command",
     enabled: true,
     type: "event",
-    execute: function(client, commands) {
+    execute: function(client, commands, dbservice) {
         client.on("interactionCreate", async interaction => {
             if (!interaction.isChatInputCommand()) return;
 
@@ -15,7 +15,7 @@ module.exports = {
             }
 
             try {
-                await command.execute(interaction, client, commands);
+                await command.execute(interaction, client, commands, dbservice);
             } catch (error) {
                 console.error(error);
                 if (interaction.replied || interaction.deferred) {

@@ -2,7 +2,7 @@ const { hasProperStructure } = require("./hasProperStructure")
 const fs = require("fs")
 const path = require("path")
 
-exports.loadEvents = function(client, events, commands) {
+exports.loadEvents = function(client, events, commands, dbservice) {
 
     const events_path = path.join(__dirname,"../events")
 
@@ -16,7 +16,7 @@ exports.loadEvents = function(client, events, commands) {
         if(hasProperStructure(event)){
             if(event.enabled) {
                 events.set(event.name, event)
-                event.execute(client, commands)
+                event.execute(client, commands, dbservice)
             } else {
                 console.info(`[INFO] Event ${event.name} wasn't enabled`)
             }
