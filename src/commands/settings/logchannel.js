@@ -24,6 +24,5 @@ module.exports = {
         } else {
             await interaction.reply({content:"Debes ser `Administrador` para poder ejecutar este comando"})
         }
-
     }
 }
