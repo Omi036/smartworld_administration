@@ -29,3 +29,23 @@ module.exports = {
     }
 }
 ```
+
+## Commands
+Command files must be placed under `src/commands/CATEGORY`, ending in `.js
+The module must have the following structure:
+```js
+import { SlashCommandBuilder } from 'discord.js'
+
+module.exports = {
+    name:"ping", // Command name (must match the name inside data)
+    description: "Returns Pong", // Command description
+    type: "commands",
+    enabled: true,  // Wether the module is enabled or disabled
+    data: new SlashCommandBuilder()   // see https://discordjs.guide/creating-your-bot/slash-commands.html#individual-command-files
+        .setName("echo")
+        .setDescription("Devuelve lo que dices"),
+    execute: function(client) {   // The actual command
+        console.log("Done")
+    }
+}
+```

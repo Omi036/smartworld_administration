@@ -1,12 +1,32 @@
 exports.hasProperStructure = function(module) {
 
-    const structure_check = ('name' in module &&
-        'type' in module &&
-        'description' in module &&
-        'enabled' in module &&
-        'execute' in module
-    )
+    var healthy
 
-    return structure_check
+    switch (module.type) {
+        case "event":
+            healthy = ('name' in module &&
+                'type' in module &&
+                'description' in module &&
+                'enabled' in module &&
+                'execute' in module
+            )
+            break;
+    
+        case "command":
+            healthy = ('name' in module &&
+                'type' in module &&
+                'description' in module &&
+                'enabled' in module &&
+                'data' in module &&
+                'execute' in module
+            )
+            break;
+
+        default:
+            healthy = false
+    }
+
+
+    return healthy
 
 }
