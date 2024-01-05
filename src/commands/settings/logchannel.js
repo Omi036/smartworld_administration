@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, ChannelType } = require('discord.js');
-const { invalidPermsEmbed } = require('../../core');
+const { invalidPermsEmbed, successEmbed } = require('../../core');
 
 module.exports = {
     name:"logchannel",
@@ -21,9 +21,9 @@ module.exports = {
 
         if(interaction.member.permissions.has("Administrator")) {
             await dbservice.colls.settings.findOneAndUpdate({header: "logchannel"},{ $set: { "value":channel.id }})
-            await interaction.reply({content:`<#${channel.id}> es el nuevo canal de registros`})
+            await interaction.reply({embeds:[successEmbed(`<#${channel.id}> es el nuevo canal de registros`)]})
         } else {
-            await interaction.reply({embeds:[invalidPermsEmbed("Administrador")]})
+            await interaction.reply({embeds:[invalidPermsEmbed("Administrador")], ephemeral:true})
         }
     }
 }

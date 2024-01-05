@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js')
-const { invalidPermsEmbed } = require('../../core')
+const { invalidPermsEmbed, successEmbed } = require('../../core')
 
 module.exports = {
     name:"quitaradvertencia",
@@ -47,12 +47,12 @@ module.exports = {
 
             dbservice.colls.warnings.findOneAndReplace(query, {header: "warnings",target:user.id, value:warns})
 
-            await interaction.reply({content:`Advertencia \`${warnings}\` borrada con éxito`})
+            await interaction.reply({embeds:[successEmbed(`Advertencia \`${warnings}\` borrada con éxito`)], ephemeral: true})
 
 
 
         } else {
-            await interaction.reply({embeds:[invalidPermsEmbed("Administrador")]})
+            await interaction.reply({embeds:[invalidPermsEmbed("Administrador")], ephemeral:true})
         }
     }
 }

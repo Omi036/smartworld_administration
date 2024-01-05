@@ -24,30 +24,30 @@ module.exports = {
 
             const doc = await dbservice.colls.warnings.findOne({header: "warnings", target: target.id})
 
-            if(!doc) {
-                interaction.reply({content:`User <@${target.id}> no tiene ninguna advertencia`})
-                return
-            } 
-
             const embed = new EmbedBuilder()
-                .setTitle(`Advertencias de ${target.displayName}`)
-                .setDescription(`El usuario <@${target.id}> tiene las siguientes advertencias:`)
-                .setColor(0xffaa00)
-                .setThumbnail(target.avatarURL())
+            .setTitle(`Advertencias de ${target.displayName}`)
+            .setDescription(`El usuario <@${target.id}> tiene las siguientes advertencias:`)
+            .setColor(0xffaa00)
+            .setThumbnail(target.avatarURL())
+            
+            if(!doc) {
+                embed.setDescription(`<@${target.id}> No tiene ninguna advertencia`)
+            } else {
 
-
-            doc.value.forEach(warn => {
-                embed.addFields({
-                    name: `${warn.date}`,
-                    value:`**Emisor:** <@${warn.author}>\n**Receptor:** <@${warn.target}>\n**Sanción:** ${warn.gravedad} \n**Motivo:** ${warn.motivo}${warn.comentarios ? `\n**Comentarios:** ${warn.comentarios}` : ""}\n**Fecha:** ${formatDate(warn.date)}`
+                doc.value.forEach(warn => {
+                    embed.addFields({
+                        name: `${warn.date}`,
+                        value:`**Emisor:** <@${warn.author}>\n**Receptor:** <@${warn.target}>\n**Sanción:** ${warn.gravedad} \n**Motivo:** ${warn.motivo}${warn.comentarios ? `\n**Comentarios:** ${warn.comentarios}` : ""}\n**Fecha:** ${formatDate(warn.date)}`
+                    })
                 })
-            })
 
-            interaction.reply({embeds: [embed]})
+            }
+
+            await interaction.reply({embeds: [embed]})
             
 
         } else {
-            await interaction.reply({embeds:[invalidPermsEmbed("Administrador")]})
+            await interaction.reply({embeds:[invalidPermsEmbed("Administrador")], ephemeral:true})
         }
     }
 }

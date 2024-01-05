@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js')
-const { invalidPermsEmbed } = require('../../core')
+const { invalidPermsEmbed, selfTargetEmbed, successEmbed } = require('../../core')
 
 module.exports = {
     name:"advertir",
@@ -58,7 +58,7 @@ module.exports = {
 
 
             if(author.id === target.id){
-                interaction.reply({content:"❌ No puedes advertirte a ti mismo", ephemeral: true})
+                interaction.reply({embeds:[selfTargetEmbed()]})
                 return
             }
 
@@ -77,16 +77,17 @@ module.exports = {
                 date: fecha
             }
 
-            await interaction.reply({content: `Parte enviado, revise <#${channel}>`, ephemeral: true})
+            
+            const message = await (await interaction.guild.channels.fetch(channel)).send({embeds: [embed]})
+            
+            await interaction.reply({embeds:[successEmbed(`Parte enviado, revise ${message.url}`)], ephemeral: true})
 
             await dbservice.colls.warnings.findOne({header: "warnings", target:target.id }) ?? await dbservice.colls.warnings.insertOne({header: "warnings", target:target.id, targetName: target.displayName, value: []})
-
             await dbservice.colls.warnings.updateOne({header: "warnings", target:target.id }, {$push: { value: warning }})
 
-            await (await interaction.guild.channels.fetch(channel)).send({embeds: [embed]})
 
         } else {
-            await interaction.reply({embeds:[invalidPermsEmbed("Administrador")]})
+            await interaction.reply({embeds:[invalidPermsEmbed("Administrador")], ephemeral:true})
         }
     }
 }
