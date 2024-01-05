@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js')
-const { formatDate } = require('../../core/time')
-const { invalidPermsEmbed } = require('../../core/responses')
+const { formatDate } = require('../../core')
+const { invalidPermsEmbed } = require('../../core')
 
 module.exports = {
     name:"advertencias",
@@ -19,9 +19,6 @@ module.exports = {
 
 
         if(interaction.member.permissions.has("Administrator")) {
-
-            await interaction.reply({embeds:[invalidPermsEmbed("Administrador")]})
-            return
             
             const target = interaction.options.getUser("user")
 

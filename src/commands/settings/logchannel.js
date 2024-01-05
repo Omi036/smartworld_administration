@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, ChannelType } = require('discord.js');
-const { invalidPermsEmbed } = require('../../core/responses');
+const { invalidPermsEmbed } = require('../../core');
 
 module.exports = {
     name:"logchannel",
