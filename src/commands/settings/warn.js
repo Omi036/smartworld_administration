@@ -1,4 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js')
+const { invalidPermsEmbed } = require('../../core/responses')
 
 module.exports = {
     name:"advertir",
@@ -85,7 +86,7 @@ module.exports = {
             await (await interaction.guild.channels.fetch(channel)).send({embeds: [embed]})
 
         } else {
-            await interaction.reply("Debes tener permisos de `Administrador` para poder ejecutar este comando")
+            await interaction.reply({embeds:[invalidPermsEmbed("Administrador")]})
         }
     }
 }

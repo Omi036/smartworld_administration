@@ -1,4 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js')
+const { formatDate } = require('../../core/time')
+const { invalidPermsEmbed } = require('../../core/responses')
 
 module.exports = {
     name:"advertencias",
@@ -15,7 +17,11 @@ module.exports = {
 
     execute: async function(interaction, client, commands, dbservice) {
 
+
         if(interaction.member.permissions.has("Administrator")) {
+
+            await interaction.reply({embeds:[invalidPermsEmbed("Administrador")]})
+            return
             
             const target = interaction.options.getUser("user")
 
@@ -36,7 +42,7 @@ module.exports = {
             doc.value.forEach(warn => {
                 embed.addFields({
                     name: `${warn.date}`,
-                    value:`**Emisor:** <@${warn.author}>\n**Receptor:** <@${warn.target}>\n**Sanción:** ${warn.gravedad} \n**Motivo:** ${warn.motivo}${warn.comentarios ? `\n**Comentarios:** ${warn.comentarios}` : ""}`
+                    value:`**Emisor:** <@${warn.author}>\n**Receptor:** <@${warn.target}>\n**Sanción:** ${warn.gravedad} \n**Motivo:** ${warn.motivo}${warn.comentarios ? `\n**Comentarios:** ${warn.comentarios}` : ""}\n**Fecha:** ${formatDate(warn.date)}`
                 })
             })
 
@@ -44,7 +50,7 @@ module.exports = {
             
 
         } else {
-            await interaction.reply("Debes tener permisos de `Administrador` para poder ejecutar este comando")
+            await interaction.reply({embeds:[invalidPermsEmbed("Administrador")]})
         }
     }
 }
