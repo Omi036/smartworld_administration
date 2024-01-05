@@ -1,6 +1,7 @@
 const { hasProperStructure } = require("./hasProperStructure")
 const fs = require("fs")
 const path = require("path")
+const { logInfo, logError } = require("./log")
 
 exports.loadCommands = function(client, commands) {
 
@@ -21,10 +22,10 @@ exports.loadCommands = function(client, commands) {
                 if(command.enabled){
                     commands.set(command.name, command)
                 } else {
-                    console.info(`[INFO] Command ${command.name} wasn't enabled`)
+                    logInfo(`Command ${command.name} wasn't enabled`)
                 }
             } else {
-                console.error(`[ERR] Command \`${module}\` Doesn't have the proper structure, see https://github.com/Omi036/smartworld_administration#events for more details`)
+                logError(`Command \`${module}\` Doesn't have the proper structure, see https://github.com/Omi036/smartworld_administration#events for more details`)
             }
         }
     })

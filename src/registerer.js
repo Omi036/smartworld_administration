@@ -7,6 +7,7 @@ const client_id = process.env.CLIENT_ID
 const fs = require('fs');
 const path = require('path');
 const { hasProperStructure } = require('./core/hasProperStructure');
+const { logInfo } = require('./core');
 
 const categories_path = path.join(__dirname, "commands")
 
@@ -40,7 +41,7 @@ const rest = new REST().setToken(token);
 // and deploy your commands!
 (async () => {
 	try {
-		console.info(`[INFO] Started refreshing ${commands.length} application (/) commands.`);
+        logInfo(`Started refreshing ${commands.length} application (/) commands.`)
 
 		// The put method is used to fully refresh all commands in the guild with the current set
 		const data = await rest.put(
@@ -48,7 +49,7 @@ const rest = new REST().setToken(token);
 			{ body: commands },
 		);
 
-		console.info(`[INFO] Successfully reloaded ${data.length} application (/) commands.`);
+        logInfo(`Successfully reloaded ${data.length} application (/) commands.`)
 
 	} catch (error) {
 		console.error(error);

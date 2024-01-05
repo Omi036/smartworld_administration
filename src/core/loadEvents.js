@@ -1,6 +1,7 @@
 const { hasProperStructure } = require("./hasProperStructure")
 const fs = require("fs")
 const path = require("path")
+const { logInfo, logError } = require("./log")
 
 exports.loadEvents = function(client, events, commands, dbservice) {
 
@@ -18,10 +19,10 @@ exports.loadEvents = function(client, events, commands, dbservice) {
                 events.set(event.name, event)
                 event.execute(client, commands, dbservice)
             } else {
-                console.info(`[INFO] Event ${event.name} wasn't enabled`)
+                logInfo(`Event ${event.name} wasn't enabled`)
             }
         } else {
-            console.error(`[ERR] Event \`${file}\` Doesn't have the proper structure, see https://github.com/Omi036/smartworld_administration#events for more details`)
+            logError(`Event \`${file}\` Doesn't have the proper structure, see https://github.com/Omi036/smartworld_administration#events for more details`)
         }
     }
 

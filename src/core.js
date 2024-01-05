@@ -2,6 +2,7 @@ const { DatabaseStart } = require("./core/database");
 const { hasProperStructure } = require("./core/hasProperStructure");
 const { loadCommands } = require("./core/loadCommands");
 const { loadEvents } = require("./core/loadEvents");
+const { logInfo, logError, logWarn } = require("./core/log");
 const { invalidPermsEmbed, selfTargetEmbed, successEmbed } = require("./core/responses");
 const { formatDate } = require("./core/time");
 
@@ -13,3 +14,6 @@ exports.invalidPermsEmbed = invalidPermsEmbed
 exports.formatDate = formatDate
 exports.selfTargetEmbed = selfTargetEmbed
 exports.successEmbed = successEmbed
+exports.logInfo = logInfo
+exports.logWarn = logWarn
+exports.logError = logError

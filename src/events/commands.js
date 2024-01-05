@@ -1,3 +1,5 @@
+const { logError } = require("../core");
+
 module.exports = {
     name:"command",
     description:"On new command",
@@ -10,7 +12,7 @@ module.exports = {
             const command = commands.get(interaction.commandName);
 
             if (!command) {
-                console.error(`[ERR] No command matching ${interaction.commandName} was found.`);
+                logError(`No command matching ${interaction.commandName} was found.`)
                 return;
             }
 

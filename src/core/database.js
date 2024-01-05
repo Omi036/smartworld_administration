@@ -1,4 +1,5 @@
 const { MongoClient } = require("mongodb")
+const { logInfo } = require("./log")
 
 const url = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_IP}:${process.env.DB_PORT}/?authMechanism=DEFAULT`
 const client = new MongoClient(url)
@@ -13,11 +14,11 @@ exports.DatabaseStart = async () => {
 
     await client.connect();
 
-    console.info("[INFO] Database Client Connected Successfully")
+    logInfo("Database Client Connected Successfully")
 
     const db = client.db(dbName)
 
-    console.info("[INFO] Database Connected Successfully")
+    logInfo("Database Connected Successfully")
 
     await db.listCollections({name:"settings"}).next() ?? await db.createCollection("settings")
     await db.listCollections({name:"warnings"}).next() ?? await db.createCollection("warnings")

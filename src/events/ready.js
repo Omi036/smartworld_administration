@@ -1,3 +1,5 @@
+const { logInfo } = require("../core")
+
 module.exports = {
     name:"ready",
     description:"On client login",
@@ -5,7 +7,7 @@ module.exports = {
     type: "event",
     execute: function(client) {
         client.on("ready", () => {
-            console.info("[INFO] Client is ready")
+            logInfo("Client is ready")
         })
     }
 }
